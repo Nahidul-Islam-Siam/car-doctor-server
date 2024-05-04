@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const jwt = require('jsonwebtoken')
 require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 5000;
@@ -28,7 +29,15 @@ async function run() {
     const serviceCollection = client.db("carDoctor").collection("services");
     const bookingCollection = client.db("carDoctor").collection('bookings');
 
+  // auth related api
 
+  app.post('/jwt', async(req,res)=>{
+    const user = req.body
+    console.log(user);
+    res.send(user)
+  })
+
+    // services related api
 
 
     app.get("/services", async (req, res) => {
